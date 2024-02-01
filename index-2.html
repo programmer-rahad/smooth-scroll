@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smooth Scroll ( Sunday 05 September 2021 )</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto:400,700&display=swap"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      ul {
+        list-style-type: none;
+      }
+      a {
+        text-decoration: none;
+        display: inline-block;
+      }
+      img {
+        vertical-align: middle;
+      }
+      .container {
+        max-width: 1170px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+      .container::after {
+        content: " ";
+        clear: both;
+        display: block;
+      }
+      header {
+        min-height: 100vh;
+        background: linear-gradient(rgba(63, 208, 212, 0.5), rgba(0, 0, 0, 0.7)),
+          url(https://vannilla-js-basic-project-10-scroll.netlify.app/hero-bcg.jpeg)
+            center/cover no-repeat;
+      }
+      header nav {
+      }
+      @media (max-width: 767.98px) {
+        header nav {
+          background-color: #e7eaed;
+        }
+      }
+      header nav.fixed-nav {
+        position: fixed;
+        width: 100%;
+        background-color: #fff;
+        transform: translateY(-100%);
+        transition-duration: 0.5s;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        top: 0;
+      }
+      header nav.fixed-nav.show-fixed-nav {
+        transform: translateY(0);
+      }
+      header nav .container {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+      }
+      a.logo {
+        float: left;
+      }
+      a.logo img {
+        height: 50px;
+      }
+      a.logo + i {
+        float: right;
+        font-size: 25px;
+        margin-top: 12.5px;
+        cursor: pointer;
+      }
+      @media (min-width: 768px) {
+        a.logo + i {
+          display: none;
+        }
+      }
+      ul.menu {
+        float: right;
+        margin-top: 12px;
+      }
+      ul.menu a.active {
+        text-decoration: underline;
+        color: #40cfd4 !important;
+      }
+      @media (min-width: 768px) {
+        ul.menu {
+          height: auto !important;
+        }
+      }
+      @media (max-width: 767.98px) {
+        ul.menu {
+          clear: both;
+          width: 100%;
+          overflow: hidden;
+          margin-top: 0;
+          height: 0;
+          padding-top: 0px;
+          transition-duration: 0.5s;
+        }
+      }
+      @media (min-width: 768px) {
+        ul.menu li {
+          float: left;
+          margin-left: 22px;
+        }
+      }
+      @media (min-width: 992px) {
+        ul.menu li {
+          margin-left: 35px;
+        }
+      }
+      ul.menu li a {
+        font-family: "Open Sans", sans-serif;
+        font-size: 18px;
+        font-weight: 700;
+        letter-spacing: 2.4px;
+        color: #fff;
+        line-height: 26px;
+      }
+      @media (max-width: 767.98px) {
+        ul.menu li a {
+          line-height: 40px;
+          color: #222;
+        }
+      }
+      @media (min-width: 768px) and (max-width: 1199.98px) {
+        header nav ul.menu li a {
+          letter-spacing: 1px;
+        }
+      }
+      header nav.fixed-nav ul.menu li a {
+        color: #222;
+      }
+      header nav.fixed-nav ul.menu li:hover a {
+        color: #40cfd4;
+      }
+
+      .banner-content {
+        min-height: calc(100vh - 82px);
+        display: grid;
+        align-content: center;
+        justify-items: center;
+        color: #fff;
+        padding-left: 15px;
+        padding-right: 15px;
+        text-align: center;
+        max-width: 750px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .banner-content > p {
+        margin: 10px 0 25px;
+        font-family: Arial, Helvetica, sans-serif;
+        line-height: 1.5;
+        font-size: 16px;
+      }
+      .banner-content > a {
+        border: 1px solid;
+        color: #fff;
+        padding: 11px 21px;
+        font-family: cursive;
+        font-size: 12px;
+        letter-spacing: 2px;
+        border-radius: 5px;
+        font-weight: 700;
+        transition-duration: 0.34s;
+      }
+      .banner-content > a:hover {
+        background-color: #fff;
+        color: #000;
+      }
+      #about,
+      #portfolios,
+      #testimonials,
+      #services,
+      #tours {
+        height: 80vh;
+      }
+      #about,
+      #testimonials,
+      #tours {
+        background-color: #f1f5f8;
+      }
+      section {
+        padding: 50px 0;
+        /* transition: margin 50ms; */
+      }
+      h2 {
+        font-size: 37px;
+        text-transform: uppercase;
+        text-align: center;
+        font-family: cursive;
+      }
+      section h2 {
+        font-size: 32px;
+        letter-spacing: 1.5px;
+      }
+      footer {
+        background-color: #102a42;
+        height: 180px;
+      }
+      .scroll-up {
+        position: fixed;
+        right: 30px;
+        bottom: 30px;
+        color: #fff;
+        background: #40cfd4;
+        padding: 10px 13.25px;
+        font-size: 20px;
+        border-radius: 50%;
+        opacity: 0;
+        transition-duration: 0.5s;
+        visibility: hidden;
+      }
+      .scroll-up.show {
+        opacity: 1;
+        visibility: visible;
+      }
+      footer {
+        background-color: #102a42;
+    height: 92px;
+    text-align: center;
+    color: #fff;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: cursive;
+    letter-spacing: 1px;
+      }
+    </style>
+  </head>
+  <body>
+    <header id="home">
+      <nav>
+        <div class="container">
+          <a href="#" class="logo">
+            <img
+              src="https://vannilla-js-basic-project-10-scroll.netlify.app/logo.svg"
+              alt="Logo"
+            />
+          </a>
+          <i class="fas fa-bars"></i>
+          <ul class="menu">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#tours">Tours</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div class="banner-content">
+        <h2>SCROLL PROJECT</h2>
+        <p>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quas eos
+          neque sunt in? Id, necessitatibus quos quisquam distinctio laudantium
+          fugiat?
+        </p>
+        <a href="#tours">EXPLORE TOURS</a>
+      </div>
+    </header>
+    <section id="about">
+      <h2>About US</h2>
+    </section>
+    <section id="services">
+      <h2>Our Services</h2>
+    </section>
+    <section id="tours">
+      <h2>Tours</h2>
+    </section>
+    <footer>
+      copyright &copy; all right reserved.
+    </footer>
+    <a class="scroll-up" href="#home">
+      <i class="fas fa-arrow-up"></i>
+    </a>
+    <script>
+      'use strict';
+      // document load event
+      window.addEventListener('DOMContentLoaded', function () {
+        // Navbar fixed top
+        const nav = document.querySelector('nav');
+        const header = document.querySelector('header');
+        const navCopy = nav.cloneNode(true);
+        navCopy.className = 'fixed-nav';
+        header.prepend(navCopy);
+
+        window.addEventListener('scroll', function () {
+          const navHeight = nav.offsetHeight;
+          if (scrollY > navHeight) {
+            navCopy.className = 'fixed-nav show-fixed-nav';
+            document.querySelector('.scroll-up').className = 'scroll-up show'
+          } else {
+            navCopy.className = 'fixed-nav';
+            document.querySelector('.scroll-up').className = 'scroll-up'
+          }
+        });
+
+        // Responsive Navigation
+        const toggleButtons = document.querySelectorAll('i.fas.fa-bars');
+        for (let i = 0; i < toggleButtons.length; i++) {
+          const toggleButton = toggleButtons[i];
+          toggleButton.addEventListener('click', function () {
+            if (!this.nextElementSibling.offsetHeight) {
+              this.nextElementSibling.style.height = '160px';
+            } else {
+              this.nextElementSibling.style.height = '0';
+            }
+          });
+        }
+
+        // Smooth Scroll
+        const links = document.querySelectorAll(
+          'nav ul li a,.banner-content a:last-child,a.scroll-up'
+        );
+        for (let i = 0; i < links.length; i++) {
+          links[i].addEventListener('click', function () {
+            if (innerWidth < 768) {
+              const ulItems = document.querySelectorAll('nav ul');
+              for (let i = 0; i < ulItems.length; i++) {
+                ulItems[i].style.height = 0;
+              }
+            }
+
+            const section = document.querySelector(this.getAttribute('href'));
+            setTimeout(function () {
+              if (section.id !== 'home') {
+                section.style.marginTop = '82px';
+              }
+            });
+
+            let sections = [...document.querySelectorAll('nav:first-child a')];
+            sections.shift();
+            sections = sections.forEach(function (section) {
+              section = document.querySelector(section.getAttribute('href'));
+              section.style.marginTop = 0;
+            });
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
